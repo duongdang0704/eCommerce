@@ -31,8 +31,7 @@ public class ShoppingCartSteps {
     }
     @Then("Message {string} notify added to cart")
     public void message_notify_added_to_cart(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
     @Then("I go to cart")
     public void i_go_to_cart() {
