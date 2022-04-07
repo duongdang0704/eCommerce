@@ -26,8 +26,8 @@ public class ShoppingCartSteps {
     @When("I click Add to Cart")
     public void i_click_add_to_cart() {
         shoppingCartPage = productDetailsPage.clickAddToCart();
-
-        shoppingCart.addItem(new Item());
+        productDetailsPage.getPrice()
+        shoppingCart.addItem(new Item(productDetailsPage.getPrice(), productDetailsPage.getProductTitle(), productDetailsPage, 1));
     }
     @Then("Message {string} notify added to cart")
     public void message_notify_added_to_cart(String string) {
