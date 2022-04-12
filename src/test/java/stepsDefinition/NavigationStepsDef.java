@@ -1,60 +1,50 @@
 package stepsDefinition;
 
-import configuration.WebConfig;
-import cucumber.TestContext;
+import actions.NavigationSteps;
+import actions.ProductSteps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.thucydides.core.annotations.Steps;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import pages.CommonPage;
-import pages.ProductsPage;
 
-public class NavigationSteps{
+public class NavigationStepsDef {
 
-    WebDriver webDriver;
-    TestContext testContext;
-
-    CommonPage commonPage;
-    ProductsPage productsPage;
-
-    public NavigationSteps(TestContext testContext){
-        this.testContext = testContext;
-        webDriver = testContext.getWebDriver();
-    }
+    @Steps
+    NavigationSteps navigationSteps;
+    @Steps
+    ProductSteps productSteps;
 
     @Given("I am on Amazon home page")
     public void i_am_on_amazon_home_page() {
-        webDriver.get(WebConfig.BASE_URL);
+        navigationSteps.openHomePage();
     }
 
     @When("I click Left menu icon")
     public void i_click_left_menu_icon() {
-        commonPage = new CommonPage(webDriver);
-        commonPage.getMenuBar().clickHamburgerMenu();
+        navigationSteps.openLeftMenu();
     }
 
     @When("I click on category {string}")
     public void i_click_on_category(String category) {
-       productsPage = commonPage.getMenuBar().clickMenuItem(category);
+       navigationSteps.goToMenuItem(category);
     }
     @Then("Products page displays banner {string}")
     public void products_page_displays_banner(String banner) {
-        Assert.assertEquals(banner, productsPage.getBannerText());
+        Assert.assertEquals(banner, productSteps.getProductBanner());
     }
 
     @Then("The page title is correct {string}")
     public void the_page_title_is_correct(String title) {
-        Assert.assertEquals(title, productsPage.getTitle());
-
+        Assert.assertEquals(title, navigationSteps.getMasterPage().getTitle());
     }
 
     @When("I click on category {string} and sub category {string}")
     public void i_click_on_category_and_sub_category(String category, String subCategory) {
-        productsPage = commonPage.getMenuBar().clickMenuItem(category, subCategory);
+        navigationSteps.goToSubMenuItem(category, subCategory);
     }
     @Then("The department is highlighted correctly {string}")
     public void the_department_is_highlighted_correctly(String category) {
-        Assert.assertEquals(category, productsPage.getHeader().getSelectedCategory());
+        Assert.assertEquals(category, productSteps.getProductsPage().getHeader().getSelectedCategory());
     }
 }

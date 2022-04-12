@@ -1,7 +1,5 @@
 package businessObjects;
 
-import stepsDefinition.ShoppingCartSteps;
-
 import java.util.ArrayList;
 import java.util.List;
 

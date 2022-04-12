@@ -1,5 +1,7 @@
 package pages;
 
+import net.serenitybdd.core.pages.PageObject;
+import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,47 +11,35 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class ResultsPage extends LandingPage {
+public class ResultsPage extends PageObject {
 
     @FindBy(css = ".a-color-state.a-text-bold")
-    WebElement resultText;
+    WebElementFacade resultText;
 
     @FindBy(css = "*[data-component-type='s-search-result']")
-    List<WebElement> resultList;
-    public ResultsPage(WebDriver webDriver){
-        super(webDriver);
-        PageFactory.initElements(webDriver, this);
-    }
+    List<WebElementFacade> resultList;
 
-    public String getSearchLabel(){
+    public String getResultBanner(){
         return resultText.getText();
     }
 
     private WebElement getBestMatch(String title){
         WebElement productLink = null;
-        for (WebElement element:resultList) {
+        for (WebElementFacade element:resultList) {
             WebElement titleH2 = element.findElement(By.tagName("h2"));
             String currentTitle = titleH2.getText();
             if (currentTitle.contains(title)){
                 productLink = titleH2.findElement(By.tagName("a"));
-                Actions actions = new Actions(webDriver);
-                actions.moveToElement(element);
-                actions.perform();
+//                Actions actions = new Actions(getwebDriver);
+//                actions.moveToElement(element);
+//                actions.perform();
                 break;
             }
         }
         return productLink;
     }
 
-    public ProductDetailsPage clickBestMatch(String title, String productType){
+    public void clickBestMatch(String title){
         getBestMatch(title).click();
-        switch (productType){
-            case "Book":
-                return new BookDetailsPage(webDriver);
-            case "Household":
-                return new HouseholdDetailsPage(webDriver);
-            default:
-                return new ProductDetailsPage(webDriver);
-        }
     }
 }

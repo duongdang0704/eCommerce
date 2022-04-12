@@ -1,5 +1,7 @@
 package pages;
 
+import net.serenitybdd.core.pages.PageObject;
+import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,38 +9,28 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class Header {
+public class Header extends PageObject {
     @FindBy(id="twotabsearchtextbox")
-    WebElement searchTextbox;
+    WebElementFacade searchTextbox;
     @FindBy(id = "nav-search-submit-button")
-    WebElement searchIcon;
+    WebElementFacade searchIcon;
     @FindBy(id = "searchDropdownBox")
-    WebElement categoryDropdown;
+    WebElementFacade categoryDropdown;
 
-    WebDriver webDriver;
-
-    public Header(WebDriver webDriver){
-        this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
-    }
-
-    public Header enterSearchString(String keywords){
+    public void enterSearchString(String keywords){
         searchTextbox.sendKeys(keywords);
-        return this;
     }
 
-    public ResultsPage clickSearchIcon(){
+    public void clickSearchIcon(){
         searchIcon.click();
-        return new ResultsPage(webDriver);
     }
 
-    public Header selectCategory(String category){
+    public void selectCategory(String category){
         Select selectCategory = new Select(categoryDropdown);
         selectCategory.selectByVisibleText(category);
-        return this;
     }
 
     public String getSelectedCategory(){
-        return categoryDropdown.getText();
+        return categoryDropdown.getFirstSelectedOptionVisibleText();
     }
 }

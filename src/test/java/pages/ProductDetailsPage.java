@@ -1,50 +1,42 @@
 package pages;
 
+import businessObjects.ProductDetails;
+import net.serenitybdd.core.pages.PageObject;
+import net.serenitybdd.core.pages.WebElementFacade;
+import net.serenitybdd.screenplay.ui.Button;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.locators.RelativeLocator;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class ProductDetailsPage extends CommonPage{
+import java.time.Duration;
+
+public class ProductDetailsPage extends PageObject {
 
     @FindBy(id = "productTitle")
-    WebElement productTitle;
+    WebElementFacade productTitle;
     @FindBy(id = "productSubtitle")
-    WebElement productSubTitle;
+    WebElementFacade productSubTitle;
     @FindBy(id = "add-to-cart-button")
-    WebElement addToCartButton;
+    WebElementFacade addToCartButton;
+    @FindBy(id = "corePrice_feature_div")
     WebElement price;
+    @FindBy(id = "productOverview_feature_div")
     WebElement productOverview;
+    @FindBy(id = "prodDetails")
     WebElement productDetails;
 
-    public void setPriceElement(){
-        this.price = webDriver.findElement(By.id("corePrice_desktop")).findElement(By.cssSelector(".a-price.a-text-price.a-size-medium.apexPriceToPay"));
-    }
-
-    public void setProductOverviewElement(){
-        this.productOverview = webDriver.findElement(By.id("productOverview_feature_div"));
-    }
-
-    public void setProductDetailsElement(){
-        this.productDetails = webDriver.findElement(By.id("prodDetails"));
-    }
-
-    public String getPrice() {
+    public String getPrice(){
         return price.getText();
     }
 
-    public String getProductOverview() {
+    public String getProductOverview(){
         return productOverview.getText();
     }
 
-    public String getProductDetails() {
+    public String getProductDetails(){
         return productDetails.getText();
-    }
-
-    public ProductDetailsPage(WebDriver webDriver) {
-        super(webDriver);
-        PageFactory.initElements(webDriver, this);
     }
 
     public String getProductTitle(){
@@ -55,9 +47,16 @@ public class ProductDetailsPage extends CommonPage{
         return productSubTitle.getText();
     }
 
-    public ShoppingCartPage clickAddToCart(){
+    public void clickAddToCart(){
         addToCartButton.click();
-        return new ShoppingCartPage(webDriver);
     }
 
+    public ProductDetails getProductInfo(){
+        String title = getProductTitle();
+        String price = getPrice();
+        System.out.println(price);
+        String overview = getProductOverview();
+        String details = getProductDetails();
+        return new ProductDetails(getProductTitle(), getPrice(), getProductOverview(), getProductDetails());
+    }
 }

@@ -1,3 +1,4 @@
+@navigation
 Feature: Navigation
 
   Background: Home page
@@ -21,4 +22,4 @@ Feature: Navigation
     And The department is highlighted correctly "<Department Highlighted>"
     Examples:
       | Category         | SubCategory | Title                                 | Department Highlighted |
-      | Alexa Smart Home | Kitchen     | Amazon.ca: Kitchen: Amazon Smart Home | Smart Home: Kitchen\nAll Departments   |
+      | Alexa Smart Home | Kitchen     | Amazon.ca: Kitchen: Amazon Smart Home | Smart Home: Kitchen    |

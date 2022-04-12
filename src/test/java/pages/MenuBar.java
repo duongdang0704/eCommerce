@@ -1,49 +1,42 @@
 package pages;
 
+import net.serenitybdd.core.pages.PageObject;
+import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class MenuBar extends BasePage{
+public class MenuBar extends PageObject {
 
     @FindBy(id = "nav-hamburger-menu")
-    WebElement hamburgerMenuIcon;
+    WebElementFacade hamburgerMenuIcon;
     @FindBy(id = "hmenu-content")
-    WebElement menu;
+    WebElementFacade menu;
     @FindBy(css = ".nav-sprite.hmenu-close-icon")
-    WebElement closeLeftMenuIcon;
+    WebElementFacade closeLeftMenuIcon;
     @FindBy(css = ".hmenu-item.hmenu-compressed-btn")
-    List<WebElement> seeMoreLinks;
-
-    WebDriver webDriver;
-
-    public MenuBar(WebDriver webDriver){
-        super(webDriver);
-        this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
-    }
+    List<WebElementFacade> seeMoreLinks;
 
     public void clickMenu(String menu){
 
     }
 
-    public MenuBar clickHamburgerMenu(){
+    public void clickHamburgerMenu(){
         hamburgerMenuIcon.click();
-        return this;
     }
 
-    public ProductsPage clickMenuItem(String category, String subCategory){
-
-        clickMenuItem(category);
-        clickMenuItem(subCategory);
-        return new ProductsPage(webDriver);
+    public void clickSingleCategory(String trending){
+        WebElement trendingItem = menu.findElement(By.xpath("//*[text()='" + trending + "'][@class='hmenu-item']"));
+        trendingItem.click();
     }
-    public ProductsPage clickMenuItem(String category){
+    public void clickSubCategory(String category, String subCategory){
+
+        clickCategory(category);
+        clickCategory(subCategory);
+    }
+    public void clickCategory(String category){
         WebElement categoryMenuItem = menu.findElement(By.xpath("//*[text()='" + category + "']"));
         WebElement parent = categoryMenuItem.findElement(By.xpath("./.."));
         String tabIndex = parent.getAttribute("tabindex");
@@ -61,11 +54,9 @@ public class MenuBar extends BasePage{
             }
         }
         categoryMenuItem.click();
-        return new ProductsPage(webDriver);
     }
 
-    public MenuBar closeLeftMenu(){
+    public void closeLeftMenu(){
         closeLeftMenuIcon.click();
-        return this;
     }
 }
