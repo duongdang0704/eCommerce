@@ -1,3 +1,4 @@
+@ShoppingCart
 Feature: Add product to cart
 
   Background: Select 1 product

@@ -1,23 +1,44 @@
 package drivers;
 
+import configuration.WebConfig;
+import org.json.simple.parser.ParseException;
+import org.openqa.selenium.WebDriver;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 public class DriverFactory {
 
-    public static DriverManager driverManager;
+    private static WebDriver driver;
 
-    public static DriverManager getDriverManager(Browser type) {
-        if (driverManager == null) {
-            switch (type) {
-                case CHROME:
-                    driverManager = new ChromeDriverManager();
-                    break;
-                case FIREFOX:
-                    driverManager = new FirefoxDriverManager();
-                    break;
-                default:
-                    //   driverManager = new SafariDriverManager();
-                    break;
+    public static WebDriver initDriver() {
+        if (driver == null) {
+            if(WebConfig.RUN_MODE.equals("local")){
+                driver = new LocalDriverManager().createDriver(WebConfig.BROWSER);
+            }
+           else {
+                try {
+                    driver = new RemoteDriverManager().createDriver();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         }
-        return driverManager;
+        return driver;
     }
+
+    public static WebDriver getDriver(){
+        return driver;
+    }
+
+    public static void quitDriver(){
+
+        if(driver != null) {
+            driver.quit();
+        }
+    }
+
 }

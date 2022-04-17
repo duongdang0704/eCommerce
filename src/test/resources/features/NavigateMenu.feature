@@ -1,3 +1,4 @@
+@Navigation
 Feature: Navigation
 
   Background: Home page
