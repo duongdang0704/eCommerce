@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Navigation on docker" parallel="tests" thread-count="3">
+    <parameter name="mode" value="remote"/>
+    <test name="Verify navigation on chrome">
+        <parameter name="configFile" value="docker.conf.json"/>
+        <parameter name="environment" value="chrome"/>
+        <classes>
+            <class name="runners.TestNGRunner"/>
+        </classes>
+    </test>
+    <test name="Verify navigation on firefox">
+        <parameter name="configFile" value="docker.conf.json"/>
+        <parameter name="environment" value="firefox"/>
+        <classes>
+            <class name="runners.TestNGRunner"/>
+        </classes>
+    </test>
+    <test name="Verify navigation on microsoft edge">
+        <parameter name="configFile" value="docker.conf.json"/>
+        <parameter name="environment" value="edge"/>
+        <classes>
+            <class name="runners.TestNGRunner"/>
+        </classes>
+    </test>
+</suite>

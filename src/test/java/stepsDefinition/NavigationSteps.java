@@ -5,8 +5,8 @@ import cucumber.TestContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pages.CommonPage;
 import pages.ProductsPage;
 
@@ -56,5 +56,6 @@ public class NavigationSteps{
     @Then("The department is highlighted correctly {string}")
     public void the_department_is_highlighted_correctly(String category) {
         Assert.assertEquals(category, productsPage.getHeader().getSelectedCategory());
+
     }
 }

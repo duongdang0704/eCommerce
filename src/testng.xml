@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SmokeTests" parallel="tests">
+    <parameter name="mode" value="remote"/>
+    <test name="Check Navigation on firefox">
+        <parameter name="configFile" value="docker.conf.json"/>
+        <parameter name="environment" value="test1" />
+        <classes>
+            <class name="runners.TestNGRunner">
+            </class>
+        </classes>
+    </test>
+    <test name="Check Navigation on chrome">
+        <parameter name="configFile" value="docker.conf.json"/>
+        <parameter name="environment" value="test2" />
+        <classes>
+            <class name="runners.TestNGRunner">
+            </class>
+        </classes>
+    </test>
+<!--    <listeners>-->
+<!--        <listener class-name="com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter"></listener>-->
+<!--    </listeners>-->
+</suite>

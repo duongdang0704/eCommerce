@@ -3,8 +3,8 @@
   "user": "dangduong_Ux54OJ",
   "key": "TAMWGGFUGwXrSyze3sPF",
   "capabilities": {
-    "build": "browserstack-build-1",
-    "name": "parallel_test",
+    "build": "browserstack-build-6",
+    "name": "navigation_parallel",
     "browserstack.debug": true
   },
   "environments": {

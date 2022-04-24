@@ -5,39 +5,36 @@ import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class DriverFactory {
 
-    private static WebDriver driver;
+//    private static WebDriver driver;
+    protected static ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
 
-    public static WebDriver initDriver() {
-        if (driver == null) {
-            if(WebConfig.RUN_MODE.equals("local")){
-                driver = new LocalDriverManager().createDriver(WebConfig.BROWSER);
+    public static void initDriver() {
+        try {
+            if (WebConfig.RUN_MODE.equals("local")) {
+                driverThread.set(new LocalDriverManager().createDriver(WebConfig.CONFIG_FILE, WebConfig.ENVIRONMENT));
+            } else if (WebConfig.RUN_MODE.equals("remote")) {
+                driverThread.set(new RemoteDriverManager().createDriver(WebConfig.CONFIG_FILE, WebConfig.ENVIRONMENT));
+            } else if (WebConfig.RUN_MODE.equals("browserstack")) {
+                driverThread.set(new BrowserStackDriverManager().createDriver(WebConfig.CONFIG_FILE, WebConfig.ENVIRONMENT));
             }
-           else {
-                try {
-                    driver = new RemoteDriverManager().createDriver();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        return driver;
     }
 
-    public static WebDriver getDriver(){
-        return driver;
+    public static WebDriver getDriverThread(){
+        return driverThread.get();
     }
 
     public static void quitDriver(){
-
-        if(driver != null) {
-            driver.quit();
+        if(driverThread != null) {
+            driverThread.get().quit();
+            driverThread.remove();
         }
     }
 

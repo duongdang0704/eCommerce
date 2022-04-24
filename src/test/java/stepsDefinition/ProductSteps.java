@@ -3,8 +3,8 @@ package stepsDefinition;
 import cucumber.TestContext;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pages.ProductDetailsPage;
 import pages.ResultsPage;
 
