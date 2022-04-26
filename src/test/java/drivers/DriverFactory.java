@@ -13,13 +13,27 @@ public class DriverFactory {
 
     public static void initDriver() {
         try {
-            if (WebConfig.RUN_MODE.equals("local")) {
-                driverThread.set(new LocalDriverManager().createDriver(WebConfig.CONFIG_FILE, WebConfig.ENVIRONMENT));
-            } else if (WebConfig.RUN_MODE.equals("remote")) {
-                driverThread.set(new RemoteDriverManager().createDriver(WebConfig.CONFIG_FILE, WebConfig.ENVIRONMENT));
-            } else if (WebConfig.RUN_MODE.equals("browserstack")) {
-                driverThread.set(new BrowserStackDriverManager().createDriver(WebConfig.CONFIG_FILE, WebConfig.ENVIRONMENT));
+            switch (WebConfig.RUN_MODE){
+                case "local":
+                    driverThread.set(new LocalDriverManager().createDriver(WebConfig.CONFIG_FILE, WebConfig.ENVIRONMENT));
+                    break;
+                case "remote":
+                    driverThread.set(new RemoteDriverManager().createDriver(WebConfig.CONFIG_FILE, WebConfig.ENVIRONMENT));
+                    break;
+                case "browserstack":
+                    driverThread.set(new BrowserStackDriverManager().createDriver(WebConfig.CONFIG_FILE, WebConfig.ENVIRONMENT));
+                    break;
+                case "mobile":
+                    driverThread.set(new MobileDriverManager().createDriver(WebConfig.CONFIG_FILE, WebConfig.ENVIRONMENT));
+                    break;
             }
+//            if (WebConfig.RUN_MODE.equals("local")) {
+//                driverThread.set(new LocalDriverManager().createDriver(WebConfig.CONFIG_FILE, WebConfig.ENVIRONMENT));
+//            } else if (WebConfig.RUN_MODE.equals("remote")) {
+//                driverThread.set(new RemoteDriverManager().createDriver(WebConfig.CONFIG_FILE, WebConfig.ENVIRONMENT));
+//            } else if (WebConfig.RUN_MODE.equals("browserstack")) {
+//                driverThread.set(new BrowserStackDriverManager().createDriver(WebConfig.CONFIG_FILE, WebConfig.ENVIRONMENT));
+//            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {

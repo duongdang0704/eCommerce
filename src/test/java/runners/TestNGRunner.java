@@ -28,7 +28,7 @@ public class TestNGRunner extends AbstractTestNGCucumberTests {
         WebConfig.setConfig(mode, configFile, environment);
         DriverFactory.initDriver();
         WebDriver driver = DriverFactory.getDriverThread();
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
     }
 
     @AfterMethod(alwaysRun = true)

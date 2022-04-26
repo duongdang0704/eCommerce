@@ -23,22 +23,22 @@ public class Hooks {
         this.testContext = testContext;
         driver = DriverFactory.getDriverThread();
         testContext.setWebDriver(driver);
-        jse = (JavascriptExecutor)driver;
+        //jse = (JavascriptExecutor)driver;
     }
 
     @Before
     public void setup(Scenario scenario){
-        // Setting name of the test
-        jse.executeScript("browserstack_executor: {\"action\": \"setSessionName\", \"arguments\": {\"name\":\"" + scenario.getName() + "\" }}");
+//        // Setting name of the test
+//        jse.executeScript("browserstack_executor: {\"action\": \"setSessionName\", \"arguments\": {\"name\":\"" + scenario.getName() + "\" }}");
     }
 
     @After
     public void tearDown(Scenario scenario){
-        if (scenario.isFailed()){
-            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\"}}");
-        }else {
-            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
-        }
+//        if (scenario.isFailed()){
+//            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\"}}");
+//        }else {
+//            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
+//        }
     }
     @AfterStep
     public void addScreenshot(Scenario scenario) throws IOException {

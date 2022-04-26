@@ -1,0 +1,19 @@
+{
+  "appiumServer": "http://localhost:4723/wd/hub",
+  "environments": {
+    "iOS": {
+      "platformName": "iOS",
+      "automationName": "XCUITest",
+      "platformVersion": "15.4",
+      "deviceName": "iPhone 13",
+      "browserName": "safari"
+    },
+    "android": {
+      "platformName": "android",
+      "automationName": "UiAutomator2",
+      "platformVersion": "11.0",
+      "deviceName": "emulator-5554",
+      "browserName": "chrome"
+    }
+  }
+}
