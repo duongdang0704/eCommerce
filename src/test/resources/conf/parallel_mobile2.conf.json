@@ -1,25 +1,27 @@
 {
   "environments": {
     "android_emulator-5554": {
+      "appiumServer": "http://localhost:4724/wd/hub",
+      "capabilities": {
+        "platformName": "android",
+        "automationName": "UiAutomator2",
+        "platformVersion": "12.0",
+        "udid": "emulator-5554",
+        "chromedriverExecutable":"/Users/duongdang/IdeaProjects/TestWithAppium/drivers/chromedriver",
+        "browserName": "Chrome",
+        "systemPort": "7900"
+      }
+    },
+    "android_emulator-5556": {
       "appiumServer": "http://localhost:4723/wd/hub",
       "capabilities": {
         "platformName": "android",
         "automationName": "UiAutomator2",
         "platformVersion": "12.0",
-        "deviceName": "emulator-5554",
+        "udid": "emulator-5556",
         "chromedriverExecutable":"/Users/duongdang/IdeaProjects/TestWithAppium/drivers/chromedriver",
-        "browserName": "Chrome"
-      }
-    },
-    "iOS_iPhone9": {
-      "appiumServer": "http://localhost:4723/wd/hub",
-      "capabilities": {
-        "platformName": "android",
-        "automationName": "UiAutomator2",
-        "platformVersion": "11.0",
-        "deviceName": "emulator-5556",
-        "browserName": "chrome",
-        "wdaLocalPort": "8102"
+        "browserName": "Chrome",
+        "systemPort": "7901"
       }
     }
   }

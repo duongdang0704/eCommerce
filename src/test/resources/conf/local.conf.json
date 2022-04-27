@@ -1,0 +1,31 @@
+{
+  "environments": {
+    "chrome": {
+      "browser": "chrome",
+      "options": ["--disable-notifications", "--start-maximized", "--disable-features=EnableEphemeralFlashPermission", "--disable-infobars"]
+    },
+    "firefox": {
+      "browser": "firefox",
+      "options": []
+    },
+    "edge": {
+      "browser": "MicrosoftEdge"
+    },
+    "iPhone13_Simulator": {
+      "appiumServer": "http://localhost:4723/wd/hub",
+      "platformName": "iOS",
+      "automationName": "XCUITest",
+      "platformVersion": "15.4",
+      "deviceName": "iPhone 13",
+      "browserName": "safari"
+    },
+    "androidPhone_Simulator": {
+      "appiumServer": "http://localhost:4723/wd/hub",
+      "platformName": "android",
+      "automationName": "UiAutomator2",
+      "platformVersion": "11.0",
+      "deviceName": "emulator-5554",
+      "browserName": "chrome"
+    }
+  }
+}

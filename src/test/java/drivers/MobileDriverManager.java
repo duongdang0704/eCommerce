@@ -22,24 +22,19 @@ public class MobileDriverManager {
         JSONParser parser = new JSONParser();
         JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/conf/" + configFile));
         JSONObject envs = (JSONObject) config.get("environments");
+        JSONObject env = (JSONObject) envs.get(environment);
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
+        Map<String, String> envCapabilities = (Map<String, String>) env.get("capabilities");
         Iterator it = envCapabilities.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
             capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
         }
-        switch (environment) {
-            case "iOS":
-                driver = new IOSDriver(new URL((String)config.get("appiumServer")), capabilities);
-                break;
-            case "android":
-                driver = new AndroidDriver(new URL((String)config.get("appiumServer")), capabilities);
-                break;
-            default:
-                break;
-
+        if (environment.contains("iOS")){
+            driver = new IOSDriver(new URL((String)env.get("appiumServer")), capabilities);
+        }else {
+            driver = new AndroidDriver(new URL((String)env.get("appiumServer")), capabilities);
         }
         return driver;
     }

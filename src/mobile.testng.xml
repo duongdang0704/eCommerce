@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Navigation on local">
+<suite name="Navigation on local" parallel="tests" thread-count="2">
     <parameter name="mode" value="mobile"/>
-    <test name="Verify navigation on chrome">
-        <parameter name="configFile" value="mobile.conf.json"/>
-        <parameter name="environment" value="android"/>
+    <test name="Verify navigation on android">
+        <parameter name="configFile" value="parallel_mobile2.conf.json"/>
+        <parameter name="environment" value="android_emulator-5554"/>
         <classes>
             <class name="runners.TestNGRunner"/>
         </classes>
     </test>
-<!--    <test name="Verify navigation on firefox">-->
-<!--        <parameter name="configFile" value="local.conf.json"/>-->
-<!--        <parameter name="environment" value="firefox"/>-->
-<!--        <classes>-->
-<!--            <class name="runners.TestNGRunner"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="Verify navigation on android 2">
+        <parameter name="configFile" value="parallel_mobile2.conf.json"/>
+        <parameter name="environment" value="android_emulator-5556"/>
+        <classes>
+            <class name="runners.TestNGRunner"/>
+        </classes>
+    </test>
 </suite>

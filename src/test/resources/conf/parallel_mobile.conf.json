@@ -1,0 +1,21 @@
+{
+  "appiumServer": "http://localhost:4723/wd/hub",
+  "environments": {
+    "iOS_iPhone13": {
+      "platformName": "iOS",
+      "automationName": "XCUITest",
+      "platformVersion": "15.4",
+      "deviceName": "iPhone 13",
+      "browserName": "safari",
+      "udid": "136CB473-A241-4919-940F-30A6E01CB25B",
+      "wdaLocalPort":"8101"
+    },
+    "iOS_iPhone9": {
+      "platformName": "android",
+      "automationName": "UiAutomator2",
+      "platformVersion": "11.0",
+      "deviceName": "emulator-5554",
+      "browserName": "chrome"
+    }
+  }
+}
