@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Navigation on local]" guice-stage="DEVELOPMENT" verbose="0">
+  <parameter name="mode" value="local"/>
+  <test thread-count="5" name="Verify navigation on chrome(failed)" verbose="0">
+    <parameter name="environment" value="chrome"/>
+    <parameter name="configFile" value="local.conf.json"/>
+    <classes>
+      <class name="runners.TestNGRunner">
+        <methods>
+          <include name="setUpClass"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="runScenario" invocation-numbers="0 1 2 3"/>
+          <include name="tearDownClass"/>
+        </methods>
+      </class> <!-- runners.TestNGRunner -->
+    </classes>
+  </test> <!-- Verify navigation on chrome(failed) -->
+</suite> <!-- Failed suite [Navigation on local] -->

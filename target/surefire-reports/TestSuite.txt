@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 11.077 s <<< FAILURE! - in TestSuite
+runners.TestNGRunner.runScenario["View trending", "Navigation"](1)  Time elapsed: 0.121 s  <<< FAILURE!
+java.lang.NoClassDefFoundError: io/cucumber/gherkin/Gherkin
+Caused by: java.lang.ClassNotFoundException: io.cucumber.gherkin.Gherkin
+
+runners.TestNGRunner.runScenario["View trending", "Navigation"](2)  Time elapsed: 0 s  <<< FAILURE!
+java.lang.NoClassDefFoundError: io/cucumber/gherkin/Gherkin
+Caused by: java.lang.ClassNotFoundException: io.cucumber.gherkin.Gherkin
+
+runners.TestNGRunner.runScenario["View trending", "Navigation"](3)  Time elapsed: 0.001 s  <<< FAILURE!
+java.lang.NoClassDefFoundError: io/cucumber/gherkin/Gherkin
+Caused by: java.lang.ClassNotFoundException: io.cucumber.gherkin.Gherkin
+
+runners.TestNGRunner.runScenario["View shop by department", "Navigation"](4)  Time elapsed: 0.004 s  <<< FAILURE!
+java.lang.NoClassDefFoundError: io/cucumber/gherkin/Gherkin
+Caused by: java.lang.ClassNotFoundException: io.cucumber.gherkin.Gherkin
+
